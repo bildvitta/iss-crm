@@ -4,10 +4,19 @@ namespace Bildvitta\IssCrm;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Bildvitta\IssCrm\Commands\IssCrmCommand;
 
+/**
+ * Class IssCrmServiceProvider.
+ *
+ * @package Bildvitta\IssCrm
+ */
 class IssCrmServiceProvider extends PackageServiceProvider
 {
+    /**
+     * @param  Package  $package
+     *
+     * @return void
+     */
     public function configurePackage(Package $package): void
     {
         /*
@@ -15,11 +24,6 @@ class IssCrmServiceProvider extends PackageServiceProvider
          *
          * More info: https://github.com/spatie/laravel-package-tools
          */
-        $package
-            ->name('iss-crm')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_iss-crm_table')
-            ->hasCommand(IssCrmCommand::class);
+        $package->name('iss-crm')->hasConfigFile();
     }
 }
