@@ -7,19 +7,16 @@
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
+## Support us
+
+- Customers (paginate, find).
+
 ## Installation
 
 You can install the package via composer:
 
 ```bash
 composer require bildvitta/iss-crm
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Bildvitta\IssCrm\IssCrmServiceProvider" --tag="iss-crm-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -31,15 +28,48 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    'base_uri' => env('MS_CRM_BASE_URI', 'https://api.almobi.com.br'),
+
+    'prefix' => env('MS_CRM_API_PREFIX', '/api')
 ];
+
 ```
+
+## Config
+
+In your .env file, associate the following variables.
+
+````dotenv
+# API base URL.
+MS_CRM_BASE_URI="http://127.0.0.1:8001"
+
+# API prefix if it exists.
+MS_CRM_API_PREFIX="/api"
+````
 
 ## Usage
 
 ```php
-$iss-crm = new Bildvitta\IssCrm();
-echo $iss-crm->echoPhrase('Hello, Spatie!');
+$issCrm = new \Bildvitta\IssCrm('jwt-hub');
+
+$issCrm->customer()->search();
+print_r($issCrm->customer()->find('uuid'));
 ```
+
+This is result:
+
+`````json
+{
+    "result": {
+        "uuid": "77b83e9e-5e20-4dbc-8d27-5bf3ea960888",
+        "status": "ready_for_commercialization",
+        "address": "R. Ohana Verdugo",
+        "city": "Théo do Leste",
+        "...": "..."
+    }
+}
+`````
 
 ## Testing
 
