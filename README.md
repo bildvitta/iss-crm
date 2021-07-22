@@ -1,7 +1,6 @@
 # This is my package IssCrm
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bildvitta/iss-crm.svg?style=flat-square)](https://packagist.org/packages/bildvitta/iss-crm)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bildvitta/iss-crm/run-tests?label=tests)](https://github.com/bildvitta/iss-crm/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bildvitta/iss-crm/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bildvitta/iss-crm/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/bildvitta/iss-crm.svg?style=flat-square)](https://packagist.org/packages/bildvitta/iss-crm)
 
@@ -53,7 +52,7 @@ MS_CRM_API_PREFIX="/api"
 ```php
 $issCrm = new \Bildvitta\IssCrm('jwt-hub');
 
-$issCrm->customer()->search();
+$issCrm->customers()->search();
 print_r($issCrm->customer()->find('uuid'));
 ```
 
@@ -62,10 +61,13 @@ This is result:
 `````json
 {
     "result": {
-        "uuid": "77b83e9e-5e20-4dbc-8d27-5bf3ea960888",
-        "status": "ready_for_commercialization",
-        "address": "R. Ohana Verdugo",
-        "city": "Théo do Leste",
+        "uuid": "effe4b02-f2eb-4ee0-9dbc-0d94ed30e532",
+        "name": "Dr. Elias Artur Ferminiano",
+        "phone": "(51) 90172-3741",
+        "phone2": null,
+        "email": "daniella52@example.org",
+        "document": "683.387.679-72",
+        "birthday": "1983-01-23",
         "...": "..."
     }
 }
@@ -91,7 +93,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [BILDjean.garcia](https://github.com/SOSTheBlack)
+- [BILD\jean.garcia](https://github.com/SOSTheBlack)
 - [All Contributors](../../contributors)
 
 ## License
