@@ -2,9 +2,9 @@
 
 namespace Bildvitta\IssCrm\Tests;
 
+use Bildvitta\IssCrm\IssCrmServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Bildvitta\IssCrm\IssCrmServiceProvider;
 
 class TestCase extends Orchestra
 {

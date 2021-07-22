@@ -8,19 +8,19 @@ use Illuminate\Http\Client\RequestException;
 
 /**
  * Class Customers.
- * 
+ *
  * @package Bildvitta\IssCrm\Resources
  */
 class Customers implements CustomerContract
 {
     /**
-     * @var IssCrm 
+     * @var IssCrm
      */
     private IssCrm $crm;
 
     /**
      * Customers constructor.
-     * 
+     *
      * @param  IssCrm  $crm
      */
     public function __construct(IssCrm $crm)
