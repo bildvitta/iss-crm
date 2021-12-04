@@ -3,8 +3,8 @@
 namespace Bildvitta\IssCrm;
 
 use Bildvitta\IssCrm\Contracts\IssCrmFactory;
-use Bildvitta\IssCrm\Resources\Customers;
 use Bildvitta\IssCrm\Resources\Channels;
+use Bildvitta\IssCrm\Resources\Customers;
 use Bildvitta\IssCrm\Resources\Funnels;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
@@ -88,6 +88,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
             'client_secret' => $secretId,
             'scope' => '*',
         ]);
+
         return $response->json('access_token');
     }
 
@@ -112,7 +113,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
         return array_merge(
             self::DEFAULT_HEADERS,
             [
-                'Almobi-Host' => Config::get('app.slug', '')
+                'Almobi-Host' => Config::get('app.slug', ''),
             ]
         );
     }
@@ -124,6 +125,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
     {
         return new Customers($this);
     }
+
     /**
      * @return Channels
      */
@@ -131,6 +133,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
     {
         return new Channels($this);
     }
+
     /**
      * @return Funnels
      */
