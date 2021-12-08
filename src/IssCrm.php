@@ -6,6 +6,7 @@ use Bildvitta\IssCrm\Contracts\IssCrmFactory;
 use Bildvitta\IssCrm\Resources\Channels;
 use Bildvitta\IssCrm\Resources\Customers;
 use Bildvitta\IssCrm\Resources\Funnels;
+use Bildvitta\IssCrm\Resources\Programmatic\Programmatic;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
@@ -33,7 +34,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
     /**
      * Hub constructor.
      *
-     * @param  string  $token
+     * @param string $token
      */
     public function __construct(?string $token)
     {
@@ -98,7 +99,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
     private function prepareRequest(): PendingRequest
     {
         return $this->request = Http::withToken($this->token)
-            ->baseUrl(Config::get('iss-crm.base_uri').Config::get('iss-crm.prefix'))
+            ->baseUrl(Config::get('iss-crm.base_uri') . Config::get('iss-crm.prefix'))
             ->withOptions(self::DEFAULT_OPTIONS)
             ->withHeaders($this->getHeaders());
     }
@@ -140,5 +141,13 @@ class IssCrm extends HttpClient implements IssCrmFactory
     public function funnels(): Funnels
     {
         return new Funnels($this);
+    }
+
+    /**
+     * @return Programmatic
+     */
+    public function programmatic(): Programmatic
+    {
+        return new Programmatic($this);
     }
 }
