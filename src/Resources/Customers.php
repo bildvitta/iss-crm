@@ -60,7 +60,7 @@ class Customers implements CustomerContract
      */
     public function getShowUrl(string $uuid): string
     {
-        $redirect_uri = Config::get('crm.front_uri').Config::get('crm.redirects.customers.show');
+        $redirect_uri = Config::get('iss-crm.front_uri').Config::get('iss-crm.redirects.customers.show');
 
         return vsprintf($redirect_uri, [$uuid]);
     }
