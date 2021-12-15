@@ -5,6 +5,7 @@ namespace Bildvitta\IssCrm\Resources;
 use Bildvitta\IssCrm\Contracts\Resources\CustomerContract;
 use Bildvitta\IssCrm\IssCrm;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Config;
 
 /**
  * Class Customers.
@@ -50,5 +51,17 @@ class Customers implements CustomerContract
     public function find(string $uuid): object
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
+    }
+
+    /**
+     * @param  string  $uuid
+     *
+     * @return string
+     */
+    public function getShowUrl(string $uuid): string
+    {
+        $redirect_uri = Config::get('crm.front_uri').Config::get('crm.redirects.customers.show');
+
+        return vsprintf($redirect_uri, [$uuid]);
     }
 }
