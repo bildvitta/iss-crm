@@ -13,6 +13,11 @@ class Customers implements CustomerContract
     private IssCrm $crm;
 
     /**
+     * @var array
+     */
+    private array $query;
+
+    /**
      *
      * Customers constructor.
      *
@@ -24,10 +29,36 @@ class Customers implements CustomerContract
     }
 
     /**
+     * Return a list od Customers By Company Id
+     *
+     * @param $value
+     * @return Customers
+     */
+    public function searchByCompany($value = null)
+    {
+        $this->query['company'] = $value;
+        return $this;
+    }
+
+    /**
+     * Return a list od Customers By Complete Registration
+     *
+     * @return $this
+     */
+    public function searchByCompleteRegistration()
+    {
+        $this->query['complete_registration'] = true;
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function search(array $query = []): object
     {
+        if (empty($query)) {
+            $query = $this->query;
+        }
         return $this->crm->request->get(self::ENDPOINT_PREFIX, $query)->throw()->object();
     }
 
