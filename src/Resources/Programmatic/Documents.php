@@ -28,6 +28,7 @@ class Documents implements DocumentsContract
     public function __construct(IssCrm $crm)
     {
         $this->crm = $crm;
+        $this->query = [];
     }
 
     /**
