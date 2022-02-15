@@ -2,6 +2,8 @@
 
 namespace Bildvitta\IssCrm\Contracts\Resources\Programmatic;
 
+use Illuminate\Http\Client\RequestException;
+
 /**
  * Interface DocumentsContract.
  *
@@ -15,6 +17,7 @@ interface DocumentsContract
     public const ENDPOINT_PREFIX = '/programmatic/customers/%s/documents';
 
     /**
+     * @param string $uuid
      * @param array $query
      *
      * @return object
