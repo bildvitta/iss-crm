@@ -15,11 +15,6 @@ class Documents implements DocumentsContract
     private IssCrm $crm;
 
     /**
-     * @var array
-     */
-    private array $query;
-
-    /**
      *
      * Customers constructor.
      *
@@ -28,7 +23,6 @@ class Documents implements DocumentsContract
     public function __construct(IssCrm $crm)
     {
         $this->crm = $crm;
-        $this->query = [];
     }
 
     /**
@@ -36,9 +30,6 @@ class Documents implements DocumentsContract
      */
     public function search(string $uuid, array $query = []): object
     {
-        if (empty($query)) {
-            $query = $this->query;
-        }
         return $this->crm->request->get(vsprintf(self::ENDPOINT_PREFIX, [$uuid]), $query)->throw()->object();
     }
 
@@ -47,9 +38,6 @@ class Documents implements DocumentsContract
      */
     public function find(string $uuid): object
     {
-        if (empty($query)) {
-            $query = $this->query;
-        }
-        return $this->crm->request->get(vsprintf(self::ENDPOINT_PREFIX, [$uuid]), $query)->throw()->object();
+        return $this->crm->request->get(vsprintf(self::ENDPOINT_PREFIX, [$uuid]))->throw()->object();
     }
 }
