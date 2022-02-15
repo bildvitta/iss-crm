@@ -69,4 +69,12 @@ class Customers implements CustomerContract
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
     }
+
+    /**
+     * @return Documents
+     */
+    public function documents(): Documents
+    {
+        return new Documents($this->crm);
+    }
 }
