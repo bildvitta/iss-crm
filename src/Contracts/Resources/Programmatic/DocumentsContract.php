@@ -2,6 +2,11 @@
 
 namespace Bildvitta\IssCrm\Contracts\Resources\Programmatic;
 
+/**
+ * Interface DocumentsContract.
+ *
+ * @package Bildvitta\IssCrm\Contracts\Resources\Programmatic
+ */
 interface DocumentsContract
 {
     /**

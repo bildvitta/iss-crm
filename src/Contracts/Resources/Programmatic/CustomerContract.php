@@ -7,7 +7,7 @@ use Illuminate\Http\Client\RequestException;
 /**
  * Interface CustomerContract.
  *
- * @package Bildvitta\IssCrm\Contracts\Resources
+ * @package Bildvitta\IssCrm\Contracts\Resources\Programmatic
  */
 interface CustomerContract
 {
