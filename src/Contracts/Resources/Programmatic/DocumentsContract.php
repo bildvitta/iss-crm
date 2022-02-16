@@ -5,30 +5,26 @@ namespace Bildvitta\IssCrm\Contracts\Resources\Programmatic;
 use Illuminate\Http\Client\RequestException;
 
 /**
- * Interface CustomerContract.
+ * Interface DocumentsContract.
  *
  * @package Bildvitta\IssCrm\Contracts\Resources\Programmatic
  */
-interface CustomerContract
+interface DocumentsContract
 {
     /**
      * @const string
      */
-    public const ENDPOINT_PREFIX = '/programmatic/customers';
+    public const ENDPOINT_PREFIX = '/programmatic/customers/%s/documents';
 
     /**
-     * @const string
-     */
-    public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX . '/%s';
-
-    /**
+     * @param string $uuid
      * @param array $query
      *
      * @return object
      *
      * @throws RequestException
      */
-    public function search(array $query = []): object;
+    public function search(string $uuid, array $query = []): object;
 
     /**
      * @param string $uuid
