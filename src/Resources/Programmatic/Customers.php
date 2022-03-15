@@ -56,9 +56,8 @@ class Customers implements CustomerContract
      */
     public function search(array $query = []): object
     {
-        if (empty($query)) {
-            $query = $this->query;
-        }
+        $query = empty($query) ? $this->query : array_merge($query, $this->query);
+
         return $this->crm->request->get(self::ENDPOINT_PREFIX, $query)->throw()->object();
     }
 
