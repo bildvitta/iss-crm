@@ -15,7 +15,7 @@ class Customers implements CustomerContract
     /**
      * @var array
      */
-    private array $query;
+    private array $query = [];
 
     /**
      *
