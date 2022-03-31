@@ -1,8 +1,8 @@
 <?php
 
-namespace Bildvitta\IssCrm\Resources\Programmatic;
+namespace Bildvitta\IssCrm\Resources\Programmatic\Customers;
 
-use Bildvitta\IssCrm\Contracts\Resources\Programmatic\CustomerContract;
+use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\CustomerContract;
 use Bildvitta\IssCrm\IssCrm;
 
 class Customers implements CustomerContract
@@ -75,5 +75,13 @@ class Customers implements CustomerContract
     public function documents(): Documents
     {
         return new Documents($this->crm);
+    }
+
+    /**
+     * @return Facts
+     */
+    public function facts(): Facts
+    {
+        return new Facts($this->crm);
     }
 }

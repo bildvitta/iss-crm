@@ -1,13 +1,13 @@
 <?php
 
-namespace Bildvitta\IssCrm\Contracts\Resources\Programmatic;
+namespace Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers;
 
 use Illuminate\Http\Client\RequestException;
 
 /**
  * Interface CustomerContract.
  *
- * @package Bildvitta\IssCrm\Contracts\Resources\Programmatic
+ * @package Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers
  */
 interface CustomerContract
 {
