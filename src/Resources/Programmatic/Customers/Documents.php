@@ -1,9 +1,9 @@
 <?php
 
-namespace Bildvitta\IssCrm\Resources\Programmatic;
+namespace Bildvitta\IssCrm\Resources\Programmatic\Customers;
 
-use Bildvitta\IssCrm\Contracts\Resources\Programmatic\CustomerContract;
-use Bildvitta\IssCrm\Contracts\Resources\Programmatic\DocumentsContract;
+use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\CustomerContract;
+use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\DocumentsContract;
 use Bildvitta\IssCrm\IssCrm;
 use stdClass;
 
