@@ -3,9 +3,9 @@
 namespace Bildvitta\IssCrm;
 
 use Bildvitta\IssCrm\Contracts\IssCrmFactory;
-use Bildvitta\IssCrm\Resources\Channels;
+use Bildvitta\IssCrm\Resources\Programmatic\Channels;
 use Bildvitta\IssCrm\Resources\Customers;
-use Bildvitta\IssCrm\Resources\Funnels;
+use Bildvitta\IssCrm\Resources\Programmatic\Funnels;
 use Bildvitta\IssCrm\Resources\Programmatic\Programmatic;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
