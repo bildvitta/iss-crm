@@ -26,4 +26,14 @@ class Programmatic
     {
         return new Customers($this->crm);
     }
+
+    public function channels(): Channels
+    {
+        return new Channels($this->crm);
+    }
+
+    public function funnels(): Funnels
+    {
+        return new Funnels($this->crm);
+    }
 }
