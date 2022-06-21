@@ -40,4 +40,15 @@ class Documents implements DocumentsContract
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_PREFIX, [$uuid]))->throw()->object();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function create(string $customer_uuid, array $data): object
+    {
+        return $this->crm->request->post(
+            vsprintf(self::ENDPOINT_PREFIX, [$customer_uuid]),
+            $data
+        )->throw()->object();
+    }
 }

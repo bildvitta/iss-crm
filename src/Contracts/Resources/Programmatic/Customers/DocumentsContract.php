@@ -34,4 +34,14 @@ interface DocumentsContract
      * @throws RequestException
      */
     public function find(string $uuid): object;
+
+    /**
+     * @param string $customer_uuid
+     * @param array $data
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function create(string $customer_uuid, array $data): object;
 }
