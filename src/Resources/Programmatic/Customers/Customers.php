@@ -84,4 +84,15 @@ class Customers implements CustomerContract
     {
         return new Facts($this->crm);
     }
+
+    /**
+     * @param  string  $uuid
+     * @param array $data
+     *
+     * @return object
+     */
+    public function update(string $uuid, array $data): object
+    {
+        return $this->crm->request->patch(vsprintf(self::ENDPOINT_UPDATE, [$uuid]), $data)->throw()->object();
+    }
 }
