@@ -58,8 +58,6 @@ class Documents implements DocumentsContract
      * @param int $offset
      *
      * @return object
-     *
-     * @throws RequestException
      */
     public function salesDocuments(string $uuid, int $limit = 12, int $offset = 0): object
     {
