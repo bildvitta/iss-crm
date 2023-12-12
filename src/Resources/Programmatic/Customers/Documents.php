@@ -51,4 +51,18 @@ class Documents implements DocumentsContract
             $data
         )->throw()->object();
     }
+
+    /**
+     * @param string $uuid
+     * @param int $limit
+     * @param int $offset
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function salesDocuments(string $uuid, int $limit = 12, int $offset = 0): object
+    {
+        return $this->crm->request->get(vsprintf(self::ENDPOINT_SALES_DOCUMENTS, [$uuid, $limit, $offset]))->throw()->object();
+    }
 }
