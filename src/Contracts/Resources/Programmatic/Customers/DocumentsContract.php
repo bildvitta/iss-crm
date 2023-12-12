@@ -17,6 +17,11 @@ interface DocumentsContract
     public const ENDPOINT_PREFIX = '/programmatic/customers/%s/documents';
 
     /**
+     * @const string
+     */
+    public const ENDPOINT_SALES_DOCUMENTS = self::ENDPOINT_PREFIX . '/sales?limit=%s&offset=%s';
+
+    /**
      * @param string $uuid
      * @param array $query
      *
@@ -44,4 +49,15 @@ interface DocumentsContract
      * @throws RequestException
      */
     public function create(string $customer_uuid, array $data): object;
+
+    /**
+     * @param string $uuid
+     * @param int $limit
+     * @param int $offset
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function salesDocuments(string $uuid, int $limit = 12, int $offset = 0): object;
 }
