@@ -101,23 +101,37 @@ class IssCrm extends HttpClient implements IssCrmFactory
         return $this->request = Http::withToken($this->token)
             ->baseUrl(Config::get('iss-crm.base_uri') . Config::get('iss-crm.prefix'))
             ->withOptions(self::DEFAULT_OPTIONS)
-            ->withHeaders($this->getHeaders());
+            ->withHeaders(self::DEFAULT_HEADERS);
     }
 
-    /**
-     * Get default headers
-     *
-     * @return string[]
-     */
-    public function getHeaders()
+    //
+
+    public function get($url, $query = [])
     {
-        return array_merge(
-            self::DEFAULT_HEADERS,
-            [
-                'Almobi-Host' => Config::get('app.slug', ''),
-            ]
-        );
+        return $this->request->get($url, $query);
     }
+
+    public function post($url, $data = [])
+    {
+        return $this->request->post($url, $data);
+    }
+
+    public function put($url, $data = [])
+    {
+        return $this->request->put($url, $data);
+    }
+
+    public function patch($url, $data = [])
+    {
+        return $this->request->patch($url, $data);
+    }
+
+    public function delete($url, $data = [])
+    {
+        return $this->request->delete($url, $data);
+    }
+
+    //
 
     /**
      * @return Customers
