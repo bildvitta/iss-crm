@@ -18,7 +18,8 @@ trait UsesCrmDB
         return parent::__callStatic($method, $parameters);
     }
 
-    protected static function configDbConnection() {
+    protected static function configDbConnection()
+    {
         config([
             'database.connections.iss-crm' => [
                 'driver' => 'mysql',
