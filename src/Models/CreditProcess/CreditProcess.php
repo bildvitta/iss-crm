@@ -5,6 +5,8 @@ namespace Bildvitta\IssCrm\Models\CreditProcess;
 use Bildvitta\IssCrm\Models\Customer\Customer;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
+use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\RealEstateDevelopment;
+use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\Typology;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
@@ -78,15 +80,15 @@ class CreditProcess extends Model
         return $this->belongsTo(User::class, 'manager_id', 'id')->withTrashed();
     }
 
-    // public function real_estate_development()
-    // {
-    //     return $this->belongsTo(RealEstateDevelopment::class, 'real_estate_development_id', 'id')->withoutGlobalScope(CompanyScope::class)->withTrashed();
-    // }
+    public function real_estate_development()
+    {
+        return $this->belongsTo(RealEstateDevelopment::class, 'real_estate_development_id', 'id')->withoutGlobalScope(CompanyScope::class)->withTrashed();
+    }
 
-    // public function typology()
-    // {
-    //     return $this->belongsTo(Typology::class, 'typology_id', 'id')->withTrashed();
-    // }
+    public function typology()
+    {
+        return $this->belongsTo(Typology::class, 'typology_id', 'id')->withTrashed();
+    }
 
     // public function sale()
     // {
