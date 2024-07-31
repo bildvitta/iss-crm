@@ -156,4 +156,9 @@ class Customer extends Model
     {
         return $this->hasMany(HeritageProperty::class, 'customer_id', 'id');
     }
+
+    public function bank_accounts()
+    {
+        return $this->hasMany(BankAccount::class, 'customer_id', 'id');
+    }
 }
