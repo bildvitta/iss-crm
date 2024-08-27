@@ -63,4 +63,11 @@ class Documents implements DocumentsContract
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_SALES_DOCUMENTS, [$uuid, $limit, $offset]))->throw()->object();
     }
+
+    public function delete(string $customerUuid, string $documentUuid): object
+    {
+        return $this->crm->request->delete(
+            vsprintf(self::ENDPOINT_PREFIX . '/%s', [$customerUuid, $documentUuid])
+        )->throw()->object();
+    }
 }
