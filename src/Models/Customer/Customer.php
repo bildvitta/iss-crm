@@ -9,6 +9,7 @@ use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
@@ -71,8 +72,6 @@ class Customer extends Model
     {
         return 'uuid';
     }
-
-    //
 
     public function user()
     {
@@ -160,5 +159,30 @@ class Customer extends Model
     public function bank_accounts()
     {
         return $this->hasMany(BankAccount::class, 'customer_id', 'id');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeInactive(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
+    public function scopeHasCompleteRegistration(Builder $query): Builder
+    {
+        return $query->whereNotNull([
+            'name',
+            'document',
+            'civil_status_id',
+            'gender',
+            'birthday',
+        ])->where(function ($query) {
+            $query->whereNotNull('email')
+                ->orWhereNotNull('phone')
+                ->orWhereNotNull('phone_two');
+        });
     }
 }
