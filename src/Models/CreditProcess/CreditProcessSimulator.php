@@ -11,11 +11,11 @@ use Ramsey\Uuid\Uuid;
 
 class CreditProcessSimulator extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'credit_process_simulators';
 
     protected $guard_name = 'web';
@@ -24,19 +24,19 @@ class CreditProcessSimulator extends Model
         'mcvc' => 'MCMV',
         'sbpe' => 'SBPE',
         'venda_direta' => 'VENDA DIRETA',
-        'ccfgts' => 'CCFGTS'
+        'ccfgts' => 'CCFGTS',
     ];
 
     public const AMORTIZATION_SYSTEM = [
         'price' => 'Tabela Price',
         'sacoc' => 'SACOC',
-        'sac' => 'SAC'
+        'sac' => 'SAC',
     ];
 
     public const STATUS = [
         'document-approved' => 'Análise documental aprovada',
         'bank-analysis' => 'Em análise bancária',
-        'bank-approved' => 'Análise bancária aprovada'
+        'bank-approved' => 'Análise bancária aprovada',
     ];
 
     public static function boot()
@@ -44,7 +44,7 @@ class CreditProcessSimulator extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

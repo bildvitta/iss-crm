@@ -9,20 +9,13 @@ use Illuminate\Support\Facades\Config;
 
 /**
  * Class Customers.
- *
- * @package Bildvitta\IssCrm\Resources
  */
 class Customers implements CustomerContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
      * Customers constructor.
-     *
-     * @param  IssCrm  $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -30,10 +23,6 @@ class Customers implements CustomerContract
     }
 
     /**
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function search(array $query = []): object
@@ -42,10 +31,6 @@ class Customers implements CustomerContract
     }
 
     /**
-     * @param  string  $uuid
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function find(string $uuid): object
@@ -53,11 +38,6 @@ class Customers implements CustomerContract
         return $this->crm->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
     }
 
-    /**
-     * @param  string  $uuid
-     *
-     * @return string
-     */
     public function getShowUrl(string $uuid): string
     {
         $redirect_uri = Config::get('iss-crm.front_uri').Config::get('iss-crm.redirects.customers.show');

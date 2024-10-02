@@ -11,11 +11,11 @@ use Ramsey\Uuid\Uuid;
 
 class CreditProcessCustomer extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'credit_process_customers';
 
     protected $guard_name = 'web';
@@ -25,7 +25,7 @@ class CreditProcessCustomer extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

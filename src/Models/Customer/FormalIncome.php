@@ -12,11 +12,11 @@ use Ramsey\Uuid\Uuid;
 
 class FormalIncome extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'customer_formal_incomes';
 
     protected $guard_name = 'web';
@@ -26,7 +26,7 @@ class FormalIncome extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

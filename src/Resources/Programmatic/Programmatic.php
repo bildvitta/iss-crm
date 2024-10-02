@@ -8,15 +8,10 @@ use Bildvitta\IssCrm\Resources\Programmatic\Customers\Customers;
 
 class Programmatic
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {

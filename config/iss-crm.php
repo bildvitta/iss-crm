@@ -8,8 +8,8 @@ return [
 
     'redirects' => [
         'customers' => [
-            'show' => '/customers/%s'
-        ]
+            'show' => '/customers/%s',
+        ],
     ],
 
     'db' => [

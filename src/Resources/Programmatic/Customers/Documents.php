@@ -2,23 +2,15 @@
 
 namespace Bildvitta\IssCrm\Resources\Programmatic\Customers;
 
-use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\CustomerContract;
 use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\DocumentsContract;
 use Bildvitta\IssCrm\IssCrm;
-use stdClass;
 
 class Documents implements DocumentsContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
-     *
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -26,7 +18,7 @@ class Documents implements DocumentsContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function search(string $uuid, array $query = []): object
     {
@@ -34,7 +26,7 @@ class Documents implements DocumentsContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function find(string $uuid): object
     {
@@ -42,7 +34,7 @@ class Documents implements DocumentsContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function create(string $customer_uuid, array $data): object
     {
@@ -52,13 +44,6 @@ class Documents implements DocumentsContract
         )->throw()->object();
     }
 
-    /**
-     * @param string $uuid
-     * @param int $limit
-     * @param int $offset
-     *
-     * @return object
-     */
     public function salesDocuments(string $uuid, int $limit = 12, int $offset = 0): object
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_SALES_DOCUMENTS, [$uuid, $limit, $offset]))->throw()->object();
@@ -67,7 +52,7 @@ class Documents implements DocumentsContract
     public function delete(string $customerUuid, string $documentUuid): object
     {
         return $this->crm->request->delete(
-            vsprintf(self::ENDPOINT_PREFIX . '/%s', [$customerUuid, $documentUuid])
+            vsprintf(self::ENDPOINT_PREFIX.'/%s', [$customerUuid, $documentUuid])
         )->throw()->object();
     }
 }

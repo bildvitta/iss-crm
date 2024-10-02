@@ -9,11 +9,11 @@ use Ramsey\Uuid\Uuid;
 
 class CreditAgentQueue extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'credit_agent_queues';
 
     protected $guard_name = 'web';
@@ -23,7 +23,7 @@ class CreditAgentQueue extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

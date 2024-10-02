@@ -2,23 +2,15 @@
 
 namespace Bildvitta\IssCrm\Resources\Programmatic\Customers;
 
-use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\CustomerContract;
 use Bildvitta\IssCrm\Contracts\Resources\Programmatic\Customers\FactsContract;
 use Bildvitta\IssCrm\IssCrm;
-use stdClass;
 
 class Facts implements FactsContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
-     *
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -26,7 +18,7 @@ class Facts implements FactsContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function create(string $customer_uuid, array $data): object
     {

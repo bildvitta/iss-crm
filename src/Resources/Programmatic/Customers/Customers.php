@@ -7,21 +7,12 @@ use Bildvitta\IssCrm\IssCrm;
 
 class Customers implements CustomerContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
-    /**
-     * @var array
-     */
     private array $query = [];
 
     /**
-     *
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -31,12 +22,12 @@ class Customers implements CustomerContract
     /**
      * Return a list od Customers By Company Id
      *
-     * @param $value
      * @return Customers
      */
     public function searchByCompany($value = null)
     {
         $this->query['company'] = $value;
+
         return $this;
     }
 
@@ -48,11 +39,12 @@ class Customers implements CustomerContract
     public function searchByCompleteRegistration()
     {
         $this->query['complete_registration'] = true;
+
         return $this;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function search(array $query = []): object
     {
@@ -62,35 +54,23 @@ class Customers implements CustomerContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function find(string $uuid): object
     {
         return $this->crm->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
     }
 
-    /**
-     * @return Documents
-     */
     public function documents(): Documents
     {
         return new Documents($this->crm);
     }
 
-    /**
-     * @return Facts
-     */
     public function facts(): Facts
     {
         return new Facts($this->crm);
     }
 
-    /**
-     * @param  string  $uuid
-     * @param array $data
-     *
-     * @return object
-     */
     public function update(string $uuid, array $data): object
     {
         return $this->crm->request->patch(vsprintf(self::ENDPOINT_UPDATE, [$uuid]), $data)->throw()->object();

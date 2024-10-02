@@ -9,11 +9,11 @@ use Ramsey\Uuid\Uuid;
 
 class RealEstateDevelopment extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'produto_real_estate_developments';
 
     protected $guard_name = 'web';
@@ -23,7 +23,7 @@ class RealEstateDevelopment extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

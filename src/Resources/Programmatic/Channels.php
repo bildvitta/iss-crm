@@ -7,21 +7,12 @@ use Bildvitta\IssCrm\IssCrm;
 
 class Channels implements ChannelContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
-    /**
-     * @var array
-     */
     private array $query = [];
 
     /**
-     *
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -29,7 +20,7 @@ class Channels implements ChannelContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function search(array $query = []): object
     {
@@ -39,7 +30,7 @@ class Channels implements ChannelContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function find(string $uuid): object
     {

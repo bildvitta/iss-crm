@@ -2,8 +2,6 @@
 
 namespace Bildvitta\IssCrm\Traits;
 
-use Illuminate\Support\Facades\DB;
-
 trait UsesCrmDB
 {
     public function __construct(array $attributes = [])
@@ -15,6 +13,7 @@ trait UsesCrmDB
     public static function __callStatic($method, $parameters)
     {
         self::configDbConnection();
+
         return parent::__callStatic($method, $parameters);
     }
 
@@ -36,7 +35,7 @@ trait UsesCrmDB
                 'strict' => true,
                 'engine' => null,
                 'options' => [],
-            ]
+            ],
         ]);
     }
 }

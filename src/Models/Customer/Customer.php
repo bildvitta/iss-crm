@@ -15,11 +15,11 @@ use Ramsey\Uuid\Uuid;
 
 class Customer extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'customers';
 
     protected $guard_name = 'web';
@@ -27,12 +27,12 @@ class Customer extends Model
     public const GENDER_LIST = [
         'male' => 'Masculino',
         'female' => 'Feminino',
-        'other' => 'Outro'
+        'other' => 'Outro',
     ];
 
     public const TYPE_LIST = [
         'cpf' => 'Pessoa física',
-        'cnpj' => 'Pessoa jurídica'
+        'cnpj' => 'Pessoa jurídica',
     ];
 
     public const KIND_LIST = [
@@ -42,7 +42,7 @@ class Customer extends Model
         'representative' => 'Representante',
         'spouse' => 'Cônjuge',
         'procurator' => 'Procurador',
-        'joint_purchase' => 'Compra conjunta'
+        'joint_purchase' => 'Compra conjunta',
     ];
 
     public const PWD_TYPE_LIST = [
@@ -58,13 +58,13 @@ class Customer extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 
     protected static function booted()
     {
-        static::addGlobalScope(new RealEstateAgencyScope());
+        static::addGlobalScope(new RealEstateAgencyScope);
     }
 
     public function getRouteKeyName()
