@@ -13,6 +13,7 @@ return [
     ],
 
     'db' => [
+        'url' => env('MS_CRM_DB_URL'),
         'host' => env('MS_CRM_DB_HOST'),
         'port' => env('MS_CRM_DB_PORT'),
         'database' => env('MS_CRM_DB_DATABASE'),
