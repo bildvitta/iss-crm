@@ -22,6 +22,7 @@ trait UsesCrmDB
         config([
             'database.connections.iss-crm' => [
                 'driver' => 'mysql',
+                'url' => config('iss-crm.db.url'),
                 'host' => config('iss-crm.db.host'),
                 'port' => config('iss-crm.db.port'),
                 'database' => config('iss-crm.db.database'),
