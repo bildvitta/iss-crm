@@ -7,6 +7,7 @@ use Bildvitta\IssCrm\Models\CivilStatus;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
+use Bildvitta\IssCrm\Models\OccupationType;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Builder;
@@ -129,6 +130,11 @@ class Customer extends Model
     public function occupation()
     {
         return $this->belongsTo(Occupation::class, 'occupation_id', 'id')->withTrashed();
+    }
+
+    public function occupation_type()
+    {
+        return $this->belongsTo(OccupationType::class, 'occupation_type_id', 'id')->withTrashed();
     }
 
     public function documents()
