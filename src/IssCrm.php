@@ -3,8 +3,8 @@
 namespace Bildvitta\IssCrm;
 
 use Bildvitta\IssCrm\Contracts\IssCrmFactory;
-use Bildvitta\IssCrm\Resources\Programmatic\Channels;
 use Bildvitta\IssCrm\Resources\Customers;
+use Bildvitta\IssCrm\Resources\Programmatic\Channels;
 use Bildvitta\IssCrm\Resources\Programmatic\Funnels;
 use Bildvitta\IssCrm\Resources\Programmatic\Programmatic;
 use Illuminate\Http\Client\Factory as HttpClient;
@@ -16,25 +16,15 @@ use Illuminate\Support\Facades\Http;
 
 /**
  * Class IssCrm.
- *
- * @package Bildvitta\IssCrm
  */
 class IssCrm extends HttpClient implements IssCrmFactory
 {
-    /**
-     * @var PendingRequest
-     */
     public PendingRequest $request;
 
-    /**
-     * @var string
-     */
     private ?string $token;
 
     /**
      * Hub constructor.
-     *
-     * @param string $token
      */
     public function __construct(?string $token)
     {
@@ -49,9 +39,8 @@ class IssCrm extends HttpClient implements IssCrmFactory
     }
 
     /**
-     * @param string $token
-     * @param bool $programatic
      * @return IssCrm
+     *
      * @throws RequestException
      */
     public function setToken(string $token, bool $programatic = false)
@@ -76,11 +65,12 @@ class IssCrm extends HttpClient implements IssCrmFactory
 
     /**
      * @return array|mixed
+     *
      * @throws RequestException
      */
     private function getToken()
     {
-        $hubUrl = Config::get('hub.base_uri') . Config::get('hub.oauth.token_uri');
+        $hubUrl = Config::get('hub.base_uri').Config::get('hub.oauth.token_uri');
         $clientId = Config::get('hub.programatic_access.client_id');
         $secretId = Config::get('hub.programatic_access.client_secret');
         $response = Http::asForm()->post($hubUrl, [
@@ -93,13 +83,10 @@ class IssCrm extends HttpClient implements IssCrmFactory
         return $response->json('access_token');
     }
 
-    /**
-     * @return PendingRequest
-     */
     private function prepareRequest(): PendingRequest
     {
         return $this->request = Http::withToken($this->token)
-            ->baseUrl(Config::get('iss-crm.base_uri') . Config::get('iss-crm.prefix'))
+            ->baseUrl(Config::get('iss-crm.base_uri').Config::get('iss-crm.prefix'))
             ->withOptions(self::DEFAULT_OPTIONS)
             ->withHeaders(self::DEFAULT_HEADERS);
     }
@@ -133,33 +120,21 @@ class IssCrm extends HttpClient implements IssCrmFactory
 
     //
 
-    /**
-     * @return Customers
-     */
     public function customers(): Customers
     {
         return new Customers($this);
     }
 
-    /**
-     * @return Channels
-     */
     public function channels(): Channels
     {
         return new Channels($this);
     }
 
-    /**
-     * @return Funnels
-     */
     public function funnels(): Funnels
     {
         return new Funnels($this);
     }
 
-    /**
-     * @return Programmatic
-     */
     public function programmatic(): Programmatic
     {
         return new Programmatic($this);

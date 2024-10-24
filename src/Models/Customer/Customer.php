@@ -7,19 +7,21 @@ use Bildvitta\IssCrm\Models\CivilStatus;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
+use Bildvitta\IssCrm\Models\OccupationType;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
 
 class Customer extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'customers';
 
     protected $guard_name = 'web';
@@ -27,12 +29,12 @@ class Customer extends Model
     public const GENDER_LIST = [
         'male' => 'Masculino',
         'female' => 'Feminino',
-        'other' => 'Outro'
+        'other' => 'Outro',
     ];
 
     public const TYPE_LIST = [
         'cpf' => 'Pessoa física',
-        'cnpj' => 'Pessoa jurídica'
+        'cnpj' => 'Pessoa jurídica',
     ];
 
     public const KIND_LIST = [
@@ -42,7 +44,7 @@ class Customer extends Model
         'representative' => 'Representante',
         'spouse' => 'Cônjuge',
         'procurator' => 'Procurador',
-        'joint_purchase' => 'Compra conjunta'
+        'joint_purchase' => 'Compra conjunta',
     ];
 
     public const PWD_TYPE_LIST = [
@@ -58,21 +60,19 @@ class Customer extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 
     protected static function booted()
     {
-        static::addGlobalScope(new RealEstateAgencyScope());
+        static::addGlobalScope(new RealEstateAgencyScope);
     }
 
     public function getRouteKeyName()
     {
         return 'uuid';
     }
-
-    //
 
     public function user()
     {
@@ -132,6 +132,11 @@ class Customer extends Model
         return $this->belongsTo(Occupation::class, 'occupation_id', 'id')->withTrashed();
     }
 
+    public function occupation_type()
+    {
+        return $this->belongsTo(OccupationType::class, 'occupation_type_id', 'id')->withTrashed();
+    }
+
     public function documents()
     {
         return $this->hasMany(Document::class, 'customer_id', 'id');
@@ -160,5 +165,30 @@ class Customer extends Model
     public function bank_accounts()
     {
         return $this->hasMany(BankAccount::class, 'customer_id', 'id');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeInactive(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
+    public function scopeHasCompleteRegistration(Builder $query): Builder
+    {
+        return $query->whereNotNull([
+            'name',
+            'document',
+            'civil_status_id',
+            'gender',
+            'birthday',
+        ])->where(function ($query) {
+            $query->whereNotNull('email')
+                ->orWhereNotNull('phone')
+                ->orWhereNotNull('phone_two');
+        });
     }
 }

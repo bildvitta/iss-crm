@@ -8,20 +8,13 @@ use Illuminate\Http\Client\RequestException;
 
 /**
  * Class Channels.
- *
- * @package Bildvitta\IssCrm\Resources
  */
 class Channels implements ChannelContract
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
      * Channels constructor.
-     *
-     * @param  IssCrm  $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -29,10 +22,6 @@ class Channels implements ChannelContract
     }
 
     /**
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function search(array $query = []): object
@@ -41,10 +30,6 @@ class Channels implements ChannelContract
     }
 
     /**
-     * @param  string  $uuid
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function find(string $uuid): object

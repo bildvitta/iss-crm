@@ -11,6 +11,7 @@ class ExistsOnCrmDBRule implements Rule
     use UsesCrmDB;
 
     protected $table;
+
     protected $column;
 
     public function __construct($table, $column)

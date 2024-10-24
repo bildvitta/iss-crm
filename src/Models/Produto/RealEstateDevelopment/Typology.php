@@ -9,11 +9,11 @@ use Ramsey\Uuid\Uuid;
 
 class Typology extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'produto_typologies';
 
     protected $guard_name = 'web';
@@ -23,7 +23,7 @@ class Typology extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

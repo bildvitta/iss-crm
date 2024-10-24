@@ -7,6 +7,7 @@ use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\RealEstateDevelopment;
 use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\Typology;
+use Bildvitta\IssCrm\Models\Sale;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
@@ -15,11 +16,11 @@ use Ramsey\Uuid\Uuid;
 
 class CreditProcess extends Model
 {
-    use UsesCrmDB;
     use SoftDeletes;
+    use UsesCrmDB;
 
     protected $connection = 'iss-crm';
-    
+
     protected $table = 'credit_processes';
 
     protected $guard_name = 'web';
@@ -29,7 +30,7 @@ class CreditProcess extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->uuid = (string)Uuid::uuid4();
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 
@@ -90,10 +91,10 @@ class CreditProcess extends Model
         return $this->belongsTo(Typology::class, 'typology_id', 'id')->withTrashed();
     }
 
-    // public function sale()
-    // {
-    //     return $this->belongsTo(Sale::class, 'sale_id', 'id')->withTrashed();
-    // }
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'sale_id', 'id')->withTrashed();
+    }
 
     public function created_by_user()
     {

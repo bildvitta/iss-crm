@@ -7,16 +7,9 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 /**
  * Class IssCrmServiceProvider.
- *
- * @package Bildvitta\IssCrm
  */
 class IssCrmServiceProvider extends PackageServiceProvider
 {
-    /**
-     * @param  Package  $package
-     *
-     * @return void
-     */
     public function configurePackage(Package $package): void
     {
         /*

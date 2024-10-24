@@ -6,8 +6,6 @@ use Bildvitta\IssCrm\Resources\Customers;
 
 /**
  * Interface IssCrmFactory.
- *
- * @package Bildvitta\IssCrm\Contracts
  */
 interface IssCrmFactory
 {
@@ -25,8 +23,5 @@ interface IssCrmFactory
      */
     public const DEFAULT_OPTIONS = ['allow_redirects' => false];
 
-    /**
-     * @return Customers
-     */
     public function customers(): Customers;
 }

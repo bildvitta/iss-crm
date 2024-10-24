@@ -3,19 +3,15 @@
 namespace Bildvitta\IssCrm\Resources\Programmatic;
 
 use Bildvitta\IssCrm\IssCrm;
+use Bildvitta\IssCrm\Resources\Programmatic\CreditProcesses\CreditProcess;
 use Bildvitta\IssCrm\Resources\Programmatic\Customers\Customers;
 
 class Programmatic
 {
-    /**
-     * @var IssCrm
-     */
     private IssCrm $crm;
 
     /**
      * Customers constructor.
-     *
-     * @param IssCrm $crm
      */
     public function __construct(IssCrm $crm)
     {
@@ -35,5 +31,10 @@ class Programmatic
     public function funnels(): Funnels
     {
         return new Funnels($this->crm);
+    }
+
+    public function creditProcesses(): CreditProcess
+    {
+        return new CreditProcess($this->crm);
     }
 }
