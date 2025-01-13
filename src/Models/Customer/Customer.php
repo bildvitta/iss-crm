@@ -7,6 +7,7 @@ use Bildvitta\IssCrm\Models\CivilStatus;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
+use Bildvitta\IssCrm\Models\Country;
 use Bildvitta\IssCrm\Models\OccupationType;
 use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
