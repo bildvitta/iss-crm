@@ -16,5 +16,4 @@ class Country extends Model
     protected $table = 'countries';
 
     protected $guard_name = 'web';
-
 }
