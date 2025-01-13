@@ -191,4 +191,19 @@ class Customer extends Model
                 ->orWhereNotNull('phone_two');
         });
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    public function calling_code_phone()
+    {
+        return $this->belongsTo(Country::class, 'calling_code_phone_id', 'id');
+    }
+
+    public function calling_code_phone_two()
+    {
+        return $this->belongsTo(Country::class, 'calling_code_phone_two_id', 'id');
+    }
 }
