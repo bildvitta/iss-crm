@@ -4,6 +4,7 @@ namespace Bildvitta\IssCrm\Models\Customer;
 
 use Bildvitta\IssCrm\Models\Channel;
 use Bildvitta\IssCrm\Models\CivilStatus;
+use Bildvitta\IssCrm\Models\Country;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
@@ -190,5 +191,20 @@ class Customer extends Model
                 ->orWhereNotNull('phone')
                 ->orWhereNotNull('phone_two');
         });
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    public function calling_code_phone()
+    {
+        return $this->belongsTo(Country::class, 'calling_code_phone_id', 'id');
+    }
+
+    public function calling_code_phone_two()
+    {
+        return $this->belongsTo(Country::class, 'calling_code_phone_two_id', 'id');
     }
 }
