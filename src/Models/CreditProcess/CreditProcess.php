@@ -8,7 +8,6 @@ use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\RealEstateDevelopment;
 use Bildvitta\IssCrm\Models\Produto\RealEstateDevelopment\Typology;
 use Bildvitta\IssCrm\Models\Sale;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,7 +57,7 @@ class CreditProcess extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScope(RealEstateAgencyScope::class)->withTrashed();
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withTrashed();
     }
 
     public function real_estate_agency()

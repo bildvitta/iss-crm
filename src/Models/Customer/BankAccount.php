@@ -3,7 +3,6 @@
 namespace Bildvitta\IssCrm\Models\Customer;
 
 use Bildvitta\IssCrm\Models\Bank;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,12 +37,11 @@ class BankAccount extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')
-            ->withoutGlobalScope(RealEstateAgencyScope::class);
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withTrashed();
     }
 
     public function bank()
     {
-        return $this->belongsTo(Bank::class, 'bank_id', 'id');
+        return $this->belongsTo(Bank::class, 'bank_id', 'id')->withTrashed();
     }
 }

@@ -9,7 +9,6 @@ use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
 use Bildvitta\IssCrm\Models\OccupationType;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -65,11 +64,6 @@ class Customer extends Model
         });
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new RealEstateAgencyScope);
-    }
-
     public function getRouteKeyName()
     {
         return 'uuid';
@@ -102,22 +96,17 @@ class Customer extends Model
 
     public function channel()
     {
-        return $this->belongsTo(Channel::class, 'channel_id', 'id')
-            ->withoutGlobalScope(\Bildvitta\IssCrm\Scopes\Channel\CompanyScope::class)
-            ->withTrashed();
+        return $this->belongsTo(Channel::class, 'channel_id', 'id')->withTrashed();
     }
 
     public function subchannel()
     {
-        return $this->belongsTo(Channel::class, 'subchannel_id', 'id')
-            ->withoutGlobalScope(\Bildvitta\IssCrm\Scopes\Channel\CompanyScope::class)
-            ->withTrashed();
+        return $this->belongsTo(Channel::class, 'subchannel_id', 'id')->withTrashed();
     }
 
     public function bonds()
     {
         return $this->belongsToMany(Customer::class, 'customer_bonds', 'customer_id', 'bond_customer_id')
-            ->withoutGlobalScope(RealEstateAgencyScope::class)
             ->withPivot('kind')
             ->withPivot('id')
             ->withTimestamps();
