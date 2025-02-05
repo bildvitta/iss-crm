@@ -38,7 +38,7 @@ class FormalIncome extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withTrashed();
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     public function occupation()

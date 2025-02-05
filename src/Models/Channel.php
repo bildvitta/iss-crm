@@ -3,6 +3,7 @@
 namespace Bildvitta\IssCrm\Models;
 
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
+use Bildvitta\IssCrm\Scopes\CompanyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,6 +29,11 @@ class Channel extends Model
         });
     }
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new CompanyScope());
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';
@@ -45,7 +51,7 @@ class Channel extends Model
         return $this->hasMany(Channel::class, 'channel_id', 'id')->withTrashed();
     }
 
-    public function hub_company()
+    public function company()
     {
         return $this->belongsTo(HubCompany::class, 'company_id', 'id')->withTrashed();
     }
