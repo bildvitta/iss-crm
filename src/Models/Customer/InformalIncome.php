@@ -3,7 +3,6 @@
 namespace Bildvitta\IssCrm\Models\Customer;
 
 use Bildvitta\IssCrm\Models\Occupation;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,12 +37,11 @@ class InformalIncome extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')
-            ->withoutGlobalScope(RealEstateAgencyScope::class);
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     public function occupation()
     {
-        return $this->belongsTo(Occupation::class, 'occupation_id', 'id');
+        return $this->belongsTo(Occupation::class, 'occupation_id', 'id')->withTrashed();
     }
 }

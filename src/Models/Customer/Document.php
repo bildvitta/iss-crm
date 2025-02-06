@@ -3,7 +3,6 @@
 namespace Bildvitta\IssCrm\Models\Customer;
 
 use Bildvitta\IssCrm\Models\DocumentType;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -39,13 +38,12 @@ class Document extends Model
 
     public function document_type()
     {
-        return $this->belongsTo(DocumentType::class, 'document_type_id', 'id');
+        return $this->belongsTo(DocumentType::class, 'document_type_id', 'id')->withTrashed();
     }
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')
-            ->withoutGlobalScope(RealEstateAgencyScope::class);
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     protected function fileFormatted(): Attribute

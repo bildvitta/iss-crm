@@ -36,6 +36,6 @@ class CreditAgent extends Model
 
     public function credit_agent_queues()
     {
-        return $this->hasMany(CreditAgentQueue::class, 'credit_agent_id', 'id');
+        return $this->hasMany(CreditAgentQueue::class, 'credit_agent_id', 'id')->withTrashed();
     }
 }
