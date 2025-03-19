@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Scope;
 class CompanyScope implements Scope
 {
     protected string $relation;
+
     protected string $relationField;
 
     public function __construct(string $relation = 'company', string $relationField = 'company_id')
@@ -21,7 +22,6 @@ class CompanyScope implements Scope
     {
         if ($user = auth()->user()) {
             /** @var User $user */
-
             $hubCompanyIds = [];
 
             $hubCompanyIds = $user->user_companies()
