@@ -36,6 +36,6 @@ class Typology extends Model
 
     public function real_estate_development()
     {
-        return $this->belongsTo(RealEstateDevelopment::class, 'real_estate_development_id', 'id');
+        return $this->belongsTo(RealEstateDevelopment::class, 'real_estate_development_id', 'id')->withTrashed();
     }
 }

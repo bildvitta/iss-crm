@@ -36,6 +36,6 @@ class RealEstateDevelopment extends Model
 
     public function typologies()
     {
-        return $this->hasMany(Typology::class, 'real_estate_development_id', 'id');
+        return $this->hasMany(Typology::class, 'real_estate_development_id', 'id')->withTrashed();
     }
 }

@@ -3,7 +3,6 @@
 namespace Bildvitta\IssCrm\Models\CreditProcess;
 
 use Bildvitta\IssCrm\Models\Customer\Customer;
-use Bildvitta\IssCrm\Scopes\Customer\RealEstateAgencyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,7 +42,7 @@ class CreditProcessCustomer extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScope(RealEstateAgencyScope::class)->withTrashed();
+        return $this->belongsTo(Customer::class, 'customer_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     public function parent()

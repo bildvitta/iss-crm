@@ -11,11 +11,6 @@ use RuntimeException;
 class IssCrmFacade extends Facade
 {
     /**
-     * @const string
-     */
-    private const FACADE_ACCESSOR = 'iss-crm';
-
-    /**
      * Get the registered name of the component.
      *
      *
@@ -23,6 +18,6 @@ class IssCrmFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return self::FACADE_ACCESSOR;
+        return \Bildvitta\IssCrm\IssCrm::class;
     }
 }
