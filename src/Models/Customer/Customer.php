@@ -189,6 +189,25 @@ class Customer extends Model
         });
     }
 
+    public function isIncompleteRegistration(): Attribute
+    {
+        return Attribute::get(function () {
+            $requiredAttributes = [
+                'name',
+                'document',
+                'civil_status_id',
+                'gender',
+                'birthday',
+            ];
+
+            $hasMissingAttributes = collect($requiredAttributes)->contains(fn ($attribute) => empty($this->$attribute));
+
+            $hasNoContactInfo = empty($this->email) && empty($this->phone) && empty($this->phone_two);
+
+            return $hasMissingAttributes || $hasNoContactInfo;
+        })->shouldCache();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
