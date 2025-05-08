@@ -5,6 +5,7 @@ namespace Bildvitta\IssCrm\Models\Customer;
 use Bildvitta\IssCrm\Models\Channel;
 use Bildvitta\IssCrm\Models\CivilStatus;
 use Bildvitta\IssCrm\Models\Country;
+use Bildvitta\IssCrm\Models\Funnel;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
@@ -99,6 +100,11 @@ class Customer extends Model
     public function real_estate_agency()
     {
         return $this->belongsTo(HubCompany::class, 'real_estate_agency_id', 'id')->withTrashed();
+    }
+
+    public function funnel()
+    {
+        return $this->belongsTo(Funnel::class, 'funnel_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     public function channel()
