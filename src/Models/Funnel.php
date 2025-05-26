@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
 
-class Channel extends Model
+class Funnel extends Model
 {
     use SoftDeletes;
     use UsesCrmDB;
 
     protected $connection = 'iss-crm';
 
-    protected $table = 'channels';
+    protected $table = 'funnels';
 
     protected $guard_name = 'web';
 
@@ -40,16 +40,6 @@ class Channel extends Model
     }
 
     //
-
-    public function channel()
-    {
-        return $this->belongsTo(Channel::class, 'channel_id', 'id')->withTrashed();
-    }
-
-    public function channels()
-    {
-        return $this->hasMany(Channel::class, 'channel_id', 'id')->withTrashed();
-    }
 
     public function company()
     {

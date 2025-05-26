@@ -26,7 +26,7 @@ class IssCrm extends HttpClient implements IssCrmFactory
     /**
      * Hub constructor.
      */
-    public function __construct(?string $token)
+    public function __construct(?string $token = '')
     {
         parent::__construct();
 

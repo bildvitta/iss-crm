@@ -5,6 +5,7 @@ namespace Bildvitta\IssCrm\Models\Customer;
 use Bildvitta\IssCrm\Models\Channel;
 use Bildvitta\IssCrm\Models\CivilStatus;
 use Bildvitta\IssCrm\Models\Country;
+use Bildvitta\IssCrm\Models\Funnel;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
 use Bildvitta\IssCrm\Models\Occupation;
@@ -12,6 +13,7 @@ use Bildvitta\IssCrm\Models\OccupationType;
 use Bildvitta\IssCrm\Scopes\CompanyScope;
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
@@ -98,6 +100,11 @@ class Customer extends Model
     public function real_estate_agency()
     {
         return $this->belongsTo(HubCompany::class, 'real_estate_agency_id', 'id')->withTrashed();
+    }
+
+    public function funnel()
+    {
+        return $this->belongsTo(Funnel::class, 'funnel_id', 'id')->withoutGlobalScopes()->withTrashed();
     }
 
     public function channel()
@@ -187,6 +194,25 @@ class Customer extends Model
                 ->orWhereNotNull('phone')
                 ->orWhereNotNull('phone_two');
         });
+    }
+
+    public function isIncompleteRegistration(): Attribute
+    {
+        return Attribute::get(function () {
+            $requiredAttributes = [
+                'name',
+                'document',
+                'civil_status_id',
+                'gender',
+                'birthday',
+            ];
+
+            $hasMissingAttributes = collect($requiredAttributes)->contains(fn ($attribute) => empty($this->$attribute));
+
+            $hasNoContactInfo = empty($this->email) && empty($this->phone) && empty($this->phone_two);
+
+            return $hasMissingAttributes || $hasNoContactInfo;
+        })->shouldCache();
     }
 
     public function country()
