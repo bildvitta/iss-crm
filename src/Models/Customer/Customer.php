@@ -8,6 +8,7 @@ use Bildvitta\IssCrm\Models\Country;
 use Bildvitta\IssCrm\Models\Funnel;
 use Bildvitta\IssCrm\Models\Hub\HubCompany;
 use Bildvitta\IssCrm\Models\Hub\User;
+use Bildvitta\IssCrm\Models\Nationality;
 use Bildvitta\IssCrm\Models\Occupation;
 use Bildvitta\IssCrm\Models\OccupationType;
 use Bildvitta\IssCrm\Scopes\CompanyScope;
@@ -15,6 +16,7 @@ use Bildvitta\IssCrm\Traits\UsesCrmDB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
 
@@ -228,5 +230,10 @@ class Customer extends Model
     public function calling_code_phone_two()
     {
         return $this->belongsTo(Country::class, 'calling_code_phone_two_id', 'id');
+    }
+
+    public function nationality(): BelongsTo
+    {
+        return $this->belongsTo(Nationality::class, 'nationality_id', 'id');
     }
 }
