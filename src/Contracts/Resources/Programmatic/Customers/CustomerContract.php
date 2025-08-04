@@ -25,6 +25,11 @@ interface CustomerContract
     public const ENDPOINT_UPDATE = self::ENDPOINT_PREFIX.'/%s';
 
     /**
+     * @const string
+     */
+    public const ENDPOINT_CHANGE_REAL_ESTATE_BROKER = self::ENDPOINT_PREFIX.'/change-real-estate-broker';
+
+    /**
      * @throws RequestException
      */
     public function search(array $query = []): object;
