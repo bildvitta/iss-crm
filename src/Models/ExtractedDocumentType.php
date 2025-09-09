@@ -3,7 +3,6 @@
 namespace Bildvitta\IssCrm\Models;
 
 use Bildvitta\IssCrm\Traits\UsesCrmDB;
-use Bildvitta\IssCrm\Models\DocumentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,7 +13,7 @@ class ExtractedDocumentType extends Model
     protected $connection = 'iss-crm';
 
     protected $table = 'extracted_document_types';
-  
+
     protected $guard_name = 'web';
 
     /**
