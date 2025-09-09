@@ -32,5 +32,15 @@ class DocumentType extends Model
         return 'uuid';
     }
 
-    //
+    public function extractedDocumentTypes(): HasMany
+    {
+        return $this->hasMany(ExtractedDocumentType::class);
+    }
+
+    public function getExtractedDocumentTypeFor(?string $department = 'juridico'): ?ExtractedDocumentType
+    {
+        return $this->extractedDocumentTypes()
+            ->where('department', $department)
+            ->first();
+    }
 }
