@@ -14,9 +14,6 @@ class Controller extends BaseController
     use DispatchesJobs;
     use ValidatesRequests;
 
-    /**
-     * @var JsonResponse
-     */
     protected JsonResponse $jsonResponse;
 
     /**
