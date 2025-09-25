@@ -19,4 +19,11 @@ class IssCrmServiceProvider extends PackageServiceProvider
          */
         $package->name('iss-crm')->hasConfigFile();
     }
+
+    public function register(): void
+    {
+        parent::register();
+
+        $this->app->singleton('crm', fn ($app, $args) => new IssCrm($args[0] ?? request()->bearerToken()));
+    }
 }
