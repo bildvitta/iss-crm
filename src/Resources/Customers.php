@@ -44,4 +44,12 @@ class Customers implements CustomerContract
 
         return vsprintf($redirect_uri, [$uuid]);
     }
+
+    public function update(string $uuidCustomer, array $data)
+    {
+        return $this->crm->request->put(
+            sprintf('/customers/%s/update', $uuidCustomer),
+            $data
+        )->object();
+    }
 }
