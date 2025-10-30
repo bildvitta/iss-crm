@@ -75,4 +75,9 @@ class Customers implements CustomerContract
     {
         return $this->crm->request->patch(vsprintf(self::ENDPOINT_UPDATE, [$uuid]), $data)->throw()->object();
     }
+
+    public function changeRealEstateBroker(array $data): object
+    {
+        return $this->crm->request->post(self::ENDPOINT_CHANGE_REAL_ESTATE_BROKER, $data)->throw()->object();
+    }
 }
